@@ -1,0 +1,12 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run Video Crop Studio",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/video_crop_tool.py",
+      "console": "integratedTerminal"
+    }
+  ]
+}
