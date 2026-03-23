@@ -5,9 +5,10 @@ Yeu cau:
 - Python 3.13.x da co san tren VDI
 
 Cach chay:
-1. Giai nen file zip.
-2. Mo thu muc da giai nen.
-3. Chay run_on_vdi.bat
+1. Lay file zip trong packaging\VideoCropStudio-source-vdi-py313.zip
+2. Giai nen file zip.
+3. Mo thu muc da giai nen.
+4. Chay run_on_vdi.bat
 
 Script se:
 - Tao .venv neu chua co

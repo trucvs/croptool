@@ -57,6 +57,7 @@ Project da co san:
 
 - `packaging/video_crop_tool.spec` cho `PyInstaller`
 - `packaging/build_windows.ps1` de build ban Windows
+- `packaging/build_vdi_bundle.ps1` de tao source bundle `.zip` cho VDI
 - `.github/workflows/windows-release.yml` de build artifact/release tren GitHub Actions
 
 ### Build tren may Windows
@@ -73,6 +74,20 @@ File zip release se duoc tao tai:
 
 ```text
 release\VideoCropStudio-v0.1.0-windows-x64.zip
+```
+
+### Tao source bundle cho VDI
+
+Neu ban muon mang source bundle sang Windows VDI va chay bang Python:
+
+```powershell
+.\packaging\build_vdi_bundle.ps1
+```
+
+File zip se duoc tao tai:
+
+```text
+packaging\VideoCropStudio-source-vdi-py313.zip
 ```
 
 ### Build release tu GitHub
