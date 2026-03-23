@@ -15,7 +15,7 @@ Cong cu Python co giao dien do hoa de crop spatial dimensions cho video bang `ff
 
 ## Yeu cau
 
-- Python 3.9+
+- Python voi binary wheel tuong thich cho `dearpygui==2.2`
 - Cac package trong `requirements.txt`
 
 ### Cai dependencies
@@ -31,6 +31,13 @@ Neu ban muon dung virtual environment:
 ```bash
 python3 -m venv .venv
 .venv/bin/pip install -r requirements.txt
+```
+
+Tren Windows PowerShell, co the dung:
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
 ```
 
 ## Chay trong VS Code
@@ -87,4 +94,5 @@ release\VideoCropStudio-v0.1.0-windows-x64.zip
 - Video duoc encode lai bang `libx264`.
 - Audio duoc encode sang `AAC` de output `.mp4` hoat dong on dinh hon.
 - App uu tien dung binary FFmpeg duoc cung cap boi `imageio-ffmpeg`, nen khong can cai `ffmpeg` hoac `ffprobe` he thong.
+- Logic da duoc tach thanh package `croptool/` de de test va bao tri, trong khi `video_crop_tool.py` van duoc giu lam entrypoint.
 - Windows release duoc dong goi theo kieu one-folder, vi vay can giu nguyen cac file nam cung `VideoCropStudio.exe` sau khi giai nen.
