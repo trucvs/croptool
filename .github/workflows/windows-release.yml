@@ -1,0 +1,47 @@
+name: Windows Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Version label for the packaged zip
+        required: false
+        default: dev
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    permissions:
+      contents: write
+    env:
+      RELEASE_VERSION: ${{ github.event_name == 'push' && github.ref_name || github.event.inputs.version || 'dev' }}
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Build Windows bundle
+        shell: pwsh
+        run: .\packaging\build_windows.ps1 -Version "${{ env.RELEASE_VERSION }}"
+
+      - name: Upload workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: VideoCropStudio-${{ env.RELEASE_VERSION }}-windows-x64
+          path: release/VideoCropStudio-${{ env.RELEASE_VERSION }}-windows-x64.zip
+          if-no-files-found: error
+
+      - name: Publish GitHub release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: release/VideoCropStudio-${{ env.RELEASE_VERSION }}-windows-x64.zip
+          generate_release_notes: true

@@ -11,6 +11,7 @@ Cong cu Python co giao dien do hoa de crop spatial dimensions cho video bang `ff
 - Preview frame dau voi khung overlay de xem vung crop.
 - Xuat video da crop bang `ffmpeg`, hien thi tien trinh va log trong UI.
 - Su dung `dearpygui` cho desktop UI va `imageio-ffmpeg` de co san binary FFmpeg.
+- Co san cau hinh dong goi Windows bang `PyInstaller`.
 
 ## Yeu cau
 
@@ -43,6 +44,36 @@ python3 video_crop_tool.py
 
 Hoac dung profile chay san co trong `.vscode/launch.json`.
 
+## Dong Goi Windows
+
+Project da co san:
+
+- `packaging/video_crop_tool.spec` cho `PyInstaller`
+- `packaging/build_windows.ps1` de build ban Windows
+- `.github/workflows/windows-release.yml` de build artifact/release tren GitHub Actions
+
+### Build tren may Windows
+
+Mo PowerShell trong thu muc project va chay:
+
+```powershell
+py -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+.\packaging\build_windows.ps1 -Version v0.1.0
+```
+
+File zip release se duoc tao tai:
+
+```text
+release\VideoCropStudio-v0.1.0-windows-x64.zip
+```
+
+### Build release tu GitHub
+
+- Push mot tag theo dang `v*`, vi du `v0.1.0`
+- Workflow `Windows Release` se build file `.exe`, dong goi thanh `.zip` va attach vao GitHub Release
+- Neu chi muon test build ma khong tao release, co the chay workflow bang `workflow_dispatch`
+
 ## Cach dung
 
 1. Bam `Chon video` de tai file input.
@@ -56,3 +87,4 @@ Hoac dung profile chay san co trong `.vscode/launch.json`.
 - Video duoc encode lai bang `libx264`.
 - Audio duoc encode sang `AAC` de output `.mp4` hoat dong on dinh hon.
 - App uu tien dung binary FFmpeg duoc cung cap boi `imageio-ffmpeg`, nen khong can cai `ffmpeg` hoac `ffprobe` he thong.
+- Windows release duoc dong goi theo kieu one-folder, vi vay can giu nguyen cac file nam cung `VideoCropStudio.exe` sau khi giai nen.
